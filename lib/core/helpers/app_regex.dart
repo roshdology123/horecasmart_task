@@ -19,10 +19,27 @@ extension Navigation on BuildContext {
   void pop() => Navigator.of(this).pop();
 }
 
-extension StringExtension on String? {
-  bool isNullOrEmpty() => this == null || this == "";
-}
-
 extension ListExtension<T> on List<T>? {
   bool isNullOrEmpty() => this == null || this!.isEmpty;
+}
+
+extension StringExtension on String? {
+  bool isNullOrEmpty() => this == null || this == "";
+
+  bool isValidEmail() {
+    if (isNullOrEmpty()) return false;
+    final emailRegex = RegExp(r'^[^@]+@[^@]+\.[^@]+');
+    return emailRegex.hasMatch(this!);
+  }
+
+  bool isValidPhone() {
+    if (isNullOrEmpty()) return false;
+    final phoneRegex = RegExp(r'^[0-9]{10,15}$');
+    return phoneRegex.hasMatch(this!);
+  }
+
+  bool isValidPassword({int minLength = 6}) {
+    if (isNullOrEmpty()) return false;
+    return this!.length >= minLength;
+  }
 }

@@ -11,4 +11,9 @@ class ColorsManager {
   static const Color secondaryHalfGrey = Color(0xffC4C5C4);
   static const Color secondarySoftGrey = Color(0xffEDEDED);
   static const Color secondaryOffGrey = Color(0xffFAFAFA);
+  static const Color labelOffBlue = Color(0xffEFF5FB);
+  static const Color labelOffGreen = Color(0xffEEFAF6);
+  static const Color labelOffRed = Color(0xffFCECEF);
+  static const Color blackTextColor = Color(0xff0C1A30);
+
 }

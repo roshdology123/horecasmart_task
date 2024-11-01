@@ -1,0 +1,48 @@
+{
+  "project_info": {
+    "project_number": "58664800261",
+    "project_id": "horecasmart-task",
+    "storage_bucket": "horecasmart-task.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:58664800261:android:11c9de4aae1e6753638c6c",
+        "android_client_info": {
+          "package_name": "com.ex"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAZiPBt4MvM3HAJpKjDAiNgQl94EQopWsE"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:58664800261:android:ceef33c95b227599638c6c",
+        "android_client_info": {
+          "package_name": "com.example.horecasmart_task"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAZiPBt4MvM3HAJpKjDAiNgQl94EQopWsE"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
