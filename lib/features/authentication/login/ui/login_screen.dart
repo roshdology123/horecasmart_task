@@ -3,12 +3,13 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:horecasmart_task/core/helpers/app_regex.dart';
 import 'package:horecasmart_task/core/helpers/spacing.dart';
+import 'package:horecasmart_task/core/routing/routes.dart';
 import 'package:horecasmart_task/core/theming/colors.dart';
-import 'package:horecasmart_task/core/theming/styles.dart';
-import 'package:horecasmart_task/core/widgets/main_button.dart';
-import 'package:horecasmart_task/core/widgets/main_input_field.dart';
-import 'package:horecasmart_task/features/authentication/login/logic/cubit/login_cubit.dart';
-import 'package:horecasmart_task/features/authentication/login/logic/cubit/login_cubit.dart';
+import 'package:horecasmart_task/features/authentication/logic/cubit/auth_cubit.dart';
+import 'package:horecasmart_task/features/authentication/logic/cubit/auth_state.dart';
+
+import 'widgets/input_fields_with_button.dart';
+import 'widgets/title_with_hint.dart';
 
 class LoginScreen extends StatefulWidget {
   const LoginScreen({super.key});
@@ -50,11 +51,11 @@ class _LoginScreenState extends State<LoginScreen> {
         scrolledUnderElevation: 0.0,
         backgroundColor: ColorsManager.pureWhite,
       ),
-      body: BlocListener<LoginCubit, LoginState>(
+      body: BlocListener<AuthCubit, AuthState>(
         listener: (context, state) {
           state.maybeWhen(
             authenticated: (user) {
-              // Navigate to the home screen
+              context.pushReplacementNamed(Routes.homeScreen);
             },
             error: (message) {
               ScaffoldMessenger.of(context).showSnackBar(
@@ -65,6 +66,11 @@ class _LoginScreenState extends State<LoginScreen> {
               ScaffoldMessenger.of(context).showSnackBar(
                 const SnackBar(content: Text('Authentication failed. Please try again.')),
               );
+            },
+            loading: () {
+              setState(() {
+                isButtonEnabled = false;
+              });
             },
             orElse: () {},
           );
@@ -80,56 +86,7 @@ class _LoginScreenState extends State<LoginScreen> {
                 verticalSpace(72.h),
                 const TitleWithHint(),
                 verticalSpace(50.h),
-                MainInputField(
-                  label: 'Email',
-                  hint: 'johndoe@domain.com',
-                  controller: emailController,
-                  validator: (value) {
-                    if (value == null || value.isEmpty) {
-                      return 'Email cannot be empty';
-                    }
-                    if (!value.isValidEmail()) {
-                      return 'Please enter a valid email address';
-                    }
-                    return null;
-                  },
-                ),
-                verticalSpace(30.h),
-                MainInputField(
-                  label: 'Password',
-                  hint: 'Enter a secure password',
-                  controller: passwordController,
-                  isPassword: true,
-                  validator: (value) {
-                    if (value == null || value.isEmpty) {
-                      return 'Password cannot be empty';
-                    }
-                    if (!value.isValidPassword()) {
-                      return 'Password must be at least 6 characters';
-                    }
-                    return null;
-                  },
-                ),
-                verticalSpace(70.h),
-                MainButton(
-                    label: 'Sign In',
-                    isEnabled: isButtonEnabled,
-                    onPressed: isButtonEnabled ? () {
-                      if (_formKey.currentState!.validate()) {
-                        context.read<LoginCubit>().login(emailController.text, passwordController.text);
-                      }
-                    } : (){
-
-                    },
-                ),
-                verticalSpace(60.h),
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: [
-                    TextButton(onPressed: (){}, child: Text('Forgot Password?', style: TextStyles.font14BlackRegular)),
-                    TextButton(onPressed: (){}, child: Text('Sign Up', style: TextStyles.font13BlueRegular)),
-                  ],
-                ),
+                InputFieldsWithButton(emailController: emailController, passwordController: passwordController, isButtonEnabled: isButtonEnabled, formKey: _formKey),
               ],
             ),
           ),
@@ -140,29 +97,4 @@ class _LoginScreenState extends State<LoginScreen> {
   }
 }
 
-class TitleWithHint extends StatelessWidget {
-  const TitleWithHint({
-    super.key,
-  });
 
-  @override
-  Widget build(BuildContext context) {
-    return Column(
-      crossAxisAlignment: CrossAxisAlignment.start,
-      children: [
-        SizedBox(
-          width: 220.w,
-          child: Text(
-            'Welcome back to eCom Mall',
-            style: TextStyles.font25BlackBold,
-          ),
-        ),
-        verticalSpace(20.h),
-        Text(
-          'Login to get the full features of the app',
-          style: TextStyles.font14GrayRegular,
-        ),
-      ],
-    );
-  }
-}

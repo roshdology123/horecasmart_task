@@ -1,19 +1,19 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/cupertino.dart';
-import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:horecasmart_task/core/di/dependency_injection.dart';
 import 'package:horecasmart_task/features/authentication/login/data/models/user_model.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
-part 'login_state.dart';
-part 'login_cubit.freezed.dart';
+import 'auth_state.dart';
 
-class LoginCubit extends Cubit<LoginState> {
+
+class AuthCubit extends Cubit<AuthState> {
   final FirebaseAuth _auth = getIt<FirebaseAuth>();
-  LoginCubit() : super(const LoginState.initial());
+  AuthCubit() : super(const AuthState.initial());
 
   Future<void> login(String email, String password) async {
     try {
+      emit(const AuthState.loading());
       final userCredential = await _auth.signInWithEmailAndPassword(
         email: email,
         password: password,
@@ -27,9 +27,9 @@ class LoginCubit extends Cubit<LoginState> {
           profilePictureUrl: user.photoURL,
           phoneNumber: user.phoneNumber,
         );
-        emit(LoginState.authenticated(loggedInUser));
+        emit(AuthState.authenticated(loggedInUser));
       } else {
-        emit(const LoginState.unauthenticated());
+        emit(const AuthState.unauthenticated());
       }
     } on FirebaseAuthException catch (e) {
       String errorMessage;
@@ -56,23 +56,68 @@ class LoginCubit extends Cubit<LoginState> {
           errorMessage = 'Email/password sign-in is disabled.';
           break;
         case 'email-already-in-use':
-          errorMessage = 'This email is already associated with another account.';
+          errorMessage =
+              'This email is already associated with another account.';
           break;
         case 'weak-password':
-          errorMessage = 'The password is too weak. Please choose a stronger password.';
+          errorMessage =
+              'The password is too weak. Please choose a stronger password.';
           break;
         default:
           debugPrint("Error during login: ${e.code}");
           errorMessage = 'An unknown error occurred. Please try again later.';
       }
-      emit(LoginState.error(errorMessage));
+      emit(AuthState.error(errorMessage));
     } catch (e) {
-      emit(const LoginState.error('An unexpected error occurred.'));
+      emit(const AuthState.error('An unexpected error occurred.'));
     }
   }
 
   Future<void> signOut() async {
     await _auth.signOut();
-    emit(const LoginState.initial());
+    emit(const AuthState.initial());
+  }
+
+  Future<void> signUp(String email, String password) async {
+    try {
+      emit(const AuthState.loading());
+      final userCredential = await _auth.createUserWithEmailAndPassword(
+        email: email,
+        password: password,
+      );
+      final user = userCredential.user;
+      if (user != null) {
+        UserModel newUser = UserModel(
+          uid: user.uid,
+          email: user.email ?? email,
+          displayName: user.displayName,
+          profilePictureUrl: user.photoURL,
+          phoneNumber: user.phoneNumber,
+        );
+        emit(AuthState.authenticated(newUser));
+      } else {
+        emit(const AuthState.error('An error occurred. Please try again.'));
+      }
+    } on FirebaseAuthException catch (e) {
+      String errorMessage;
+      switch (e.code) {
+        case 'invalid-email':
+          errorMessage = 'The email address is not valid.';
+          break;
+        case 'email-already-in-use':
+          errorMessage =
+              'This email is already associated with another account.';
+          break;
+        case 'operation-not-allowed':
+          errorMessage = 'Email/password sign-in is disabled.';
+          break;
+        case 'weak-password':
+          errorMessage = 'The password is too weak.';
+          break;
+        default:
+          errorMessage = 'An error occurred. Please try again.';
+      }
+      emit(AuthState.error(errorMessage));
+    }
   }
 }
