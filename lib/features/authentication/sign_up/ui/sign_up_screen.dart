@@ -78,7 +78,17 @@ class _SignUpScreenState extends State<SignUpScreen> {
                 Text('Complete your details', style: TextStyles.font14GrayRegular,),
 
                 RegisterFields(emailController: emailController, passwordController: passwordController, confirmPasswordController: confirmPasswordController, isButtonEnabled: isButtonEnabled, formKey: _formKey),
-
+                verticalSpace(70.h),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  crossAxisAlignment: CrossAxisAlignment.center,
+                  children: [
+                    TextButton(onPressed: (){}, child: Text('Already have an account?', style: TextStyles.font14BlackRegular)),
+                    TextButton(onPressed: (){
+                      context.pushNamed(Routes.loginScreen);
+                    }, child: Text('Sign In', style: TextStyles.font13BlueSemiBold)),
+                  ],
+                ),
               ],
             ),
           ),

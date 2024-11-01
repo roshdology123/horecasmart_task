@@ -27,8 +27,8 @@ class AppRouter {
               create: (context) => getIt<AuthCubit>(),
               child:const SignUpScreen(),
             ));
-    case Routes.homeScreen:
-      return MaterialPageRoute(builder: (_) => HomeScreen());
+    // case Routes.homeScreen:
+    //   return MaterialPageRoute(builder: (_) => HomeScreen());
       default:
         return MaterialPageRoute(builder: (_) =>
             Scaffold(
