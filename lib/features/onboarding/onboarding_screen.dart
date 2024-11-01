@@ -1,8 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:horecasmart_task/core/helpers/spacing.dart';
-import 'package:horecasmart_task/core/theming/colors.dart';
-import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:horecasmart_task/core/theming/styles.dart';
 import 'package:horecasmart_task/features/onboarding/widgets/custom_top_painter.dart';
 import 'package:horecasmart_task/features/onboarding/widgets/discriptive_image.dart';
 

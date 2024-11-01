@@ -10,7 +10,6 @@ import 'package:flutter_test/flutter_test.dart';
 import 'package:horecasmart_task/core/routing/app_router.dart';
 import 'package:horecasmart_task/horecasmart.dart';
 
-import 'package:horecasmart_task/main.dart';
 
 void main() {
   testWidgets('Counter increments smoke test', (WidgetTester tester) async {

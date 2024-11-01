@@ -14,7 +14,7 @@ class CustomTopPainter extends StatelessWidget {
     return Stack (
       children: [
         CustomPaint(
-          size: Size(375.w, 340.h),
+          size: Size(375.w, 300.h),
           painter: TopCurvePainter(),
         ),
         Align(

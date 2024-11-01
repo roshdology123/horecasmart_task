@@ -1,4 +1,3 @@
-import 'dart:ui';
 
 import 'package:flutter/material.dart';
 import 'package:horecasmart_task/core/theming/colors.dart';
@@ -6,12 +5,6 @@ import 'package:horecasmart_task/core/theming/font_weight_helper.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class TextStyles {
-  static TextStyle font24BlackBold = TextStyle(
-    fontSize: 24.sp,
-    fontWeight: FontWeightHelper.bold,
-    fontFamily: 'DM Sans',
-    color: Colors.black,
-  );
 
   static TextStyle font32BlueBold = TextStyle(
     fontSize: 32.sp,
@@ -166,6 +159,20 @@ class TextStyles {
     fontWeight: FontWeightHelper.medium,
     color: Colors.white,
     fontFamily: 'DM Sans',
+  );
+
+  static TextStyle font25BlackBold = TextStyle(
+    fontSize: 25.sp,
+    fontWeight: FontWeightHelper.bold,
+    color: ColorsManager.blackTextColor,
+    fontFamily: 'DM Sans'
+  );
+
+  static TextStyle font14BlackRegular = TextStyle(
+    fontSize: 14.sp,
+    fontWeight: FontWeightHelper.regular,
+    color: ColorsManager.blackTextColor,
+    fontFamily: 'DM Sans'
   );
 
 }
