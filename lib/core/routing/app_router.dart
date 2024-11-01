@@ -1,29 +1,37 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:horecasmart_task/core/di/dependency_injection.dart';
 import 'package:horecasmart_task/core/routing/routes.dart';
-import 'package:horecasmart_task/features/authentication/login/login_screen.dart';
+import 'package:horecasmart_task/features/authentication/login/logic/cubit/login_cubit.dart';
+import 'package:horecasmart_task/features/authentication/login/ui/login_screen.dart';
+import 'package:horecasmart_task/features/authentication/sign_up/ui/sign_up_screen.dart';
 import 'package:horecasmart_task/features/onboarding/onboarding_screen.dart';
 
-class AppRouter{
+class AppRouter {
 
-  Route generateRoute(RouteSettings settings){
-
+  Route generateRoute(RouteSettings settings) {
     final arguments = settings.arguments;
 
-    switch(settings.name){
+    switch (settings.name) {
       case Routes.onBoardingScreen:
         return MaterialPageRoute(builder: (_) => const OnBoardingScreen());
       case Routes.loginScreen:
-        return MaterialPageRoute(builder: (_) => const LoginScreen());
-      // case Routes.registerScreen:
-      //   return MaterialPageRoute(builder: (_) => RegisterScreen());
-      // case Routes.homeScreen:
-      //   return MaterialPageRoute(builder: (_) => HomeScreen());
+        return MaterialPageRoute(builder: (_) =>
+            BlocProvider(
+              create: (context) => getIt<LoginCubit>(),
+              child:const  LoginScreen(),
+            ));
+    case Routes.signUpScreen:
+      return MaterialPageRoute(builder: (_) => SignUpScreen());
+    // case Routes.homeScreen:
+    //   return MaterialPageRoute(builder: (_) => HomeScreen());
       default:
-        return MaterialPageRoute(builder: (_) => Scaffold(
-          body: Center(
-            child: Text('No route defined for ${settings.name}'),
-          ),
-        ));
+        return MaterialPageRoute(builder: (_) =>
+            Scaffold(
+              body: Center(
+                child: Text('No route defined for ${settings.name}'),
+              ),
+            ));
     }
   }
 }

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:horecasmart_task/core/helpers/app_regex.dart';
 import 'package:horecasmart_task/core/helpers/spacing.dart';
@@ -6,6 +7,8 @@ import 'package:horecasmart_task/core/theming/colors.dart';
 import 'package:horecasmart_task/core/theming/styles.dart';
 import 'package:horecasmart_task/core/widgets/main_button.dart';
 import 'package:horecasmart_task/core/widgets/main_input_field.dart';
+import 'package:horecasmart_task/features/authentication/login/logic/cubit/login_cubit.dart';
+import 'package:horecasmart_task/features/authentication/login/logic/cubit/login_cubit.dart';
 
 class LoginScreen extends StatefulWidget {
   const LoginScreen({super.key});
@@ -47,7 +50,26 @@ class _LoginScreenState extends State<LoginScreen> {
         scrolledUnderElevation: 0.0,
         backgroundColor: ColorsManager.pureWhite,
       ),
-      body: SingleChildScrollView(
+      body: BlocListener<LoginCubit, LoginState>(
+        listener: (context, state) {
+          state.maybeWhen(
+            authenticated: (user) {
+              // Navigate to the home screen
+            },
+            error: (message) {
+              ScaffoldMessenger.of(context).showSnackBar(
+                SnackBar(content: Text(message)),
+              );
+            },
+            unauthenticated: () {
+              ScaffoldMessenger.of(context).showSnackBar(
+                const SnackBar(content: Text('Authentication failed. Please try again.')),
+              );
+            },
+            orElse: () {},
+          );
+        },
+  child: SingleChildScrollView(
         child: Padding(
           padding: EdgeInsets.symmetric(horizontal: 25.w),
           child: Form(
@@ -92,13 +114,28 @@ class _LoginScreenState extends State<LoginScreen> {
                 MainButton(
                     label: 'Sign In',
                     isEnabled: isButtonEnabled,
-                    onPressed: () {},
+                    onPressed: isButtonEnabled ? () {
+                      if (_formKey.currentState!.validate()) {
+                        context.read<LoginCubit>().login(emailController.text, passwordController.text);
+                      }
+                    } : (){
+
+                    },
+                ),
+                verticalSpace(60.h),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    TextButton(onPressed: (){}, child: Text('Forgot Password?', style: TextStyles.font14BlackRegular)),
+                    TextButton(onPressed: (){}, child: Text('Sign Up', style: TextStyles.font13BlueRegular)),
+                  ],
                 ),
               ],
             ),
           ),
         ),
       ),
+),
     );
   }
 }
