@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:horecasmart_task/core/helpers/spacing.dart';
 import 'package:horecasmart_task/core/theming/colors.dart';
-import 'package:horecasmart_task/core/widgets/product_card.dart';
 import 'package:shimmer/shimmer.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 

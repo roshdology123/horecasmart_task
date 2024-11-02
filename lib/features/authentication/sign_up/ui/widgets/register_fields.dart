@@ -5,7 +5,6 @@ import 'package:horecasmart_task/core/helpers/spacing.dart';
 import 'package:horecasmart_task/core/widgets/main_button.dart';
 import 'package:horecasmart_task/core/widgets/main_input_field.dart';
 import 'package:horecasmart_task/features/authentication/logic/cubit/auth_cubit.dart';
-import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class RegisterFields extends StatelessWidget {
   const RegisterFields({
