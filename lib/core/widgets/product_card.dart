@@ -1,16 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:cached_network_image/cached_network_image.dart';
+import 'package:horecasmart_task/core/helpers/spacing.dart';
 import 'package:horecasmart_task/core/theming/colors.dart';
 import 'package:horecasmart_task/core/theming/styles.dart';
-
-SizedBox verticalSpace(double height) => SizedBox(
-  height: height.h,
-);
-
-SizedBox horizontalSpace(double width) => SizedBox(
-  width: width.w,
-);
 
 class ProductCard extends StatelessWidget {
   final String imageUrl;
@@ -52,7 +45,7 @@ class ProductCard extends StatelessWidget {
               height: 130.h,
               fit: BoxFit.contain,
               progressIndicatorBuilder: (context, url, downloadProgress) =>
-                  SizedBox(width: 60.w,height : 60.w,child: CircularProgressIndicator(value: downloadProgress.progress)),
+                  SizedBox(width: 40.w,height : 40.w,child: CircularProgressIndicator(value: downloadProgress.progress)),
             ),
           ),
           verticalSpace(16),
