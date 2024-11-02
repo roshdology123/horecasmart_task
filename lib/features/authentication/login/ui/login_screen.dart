@@ -83,9 +83,9 @@ class _LoginScreenState extends State<LoginScreen> {
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                verticalSpace(72.h),
+                verticalSpace(72),
                 const TitleWithHint(),
-                verticalSpace(50.h),
+                verticalSpace(50),
                 InputFieldsWithButton(emailController: emailController, passwordController: passwordController, isButtonEnabled: isButtonEnabled, formKey: _formKey),
               ],
             ),

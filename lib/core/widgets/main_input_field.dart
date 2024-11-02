@@ -3,11 +3,13 @@ import 'package:horecasmart_task/core/helpers/spacing.dart';
 import 'package:horecasmart_task/core/theming/colors.dart';
 import 'package:horecasmart_task/core/theming/styles.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:iconsax/iconsax.dart';
 
 class MainInputField extends StatefulWidget {
   final String label;
   final String hint;
   final bool isPassword;
+  final bool isSearch; // New parameter for search icon
   final TextEditingController controller;
   final String? Function(String?)? validator;
   final String? explanation;
@@ -18,7 +20,9 @@ class MainInputField extends StatefulWidget {
     required this.hint,
     required this.controller,
     this.isPassword = false,
-    this.validator, this.explanation,
+    this.isSearch = false, // Default to false if not specified
+    this.validator,
+    this.explanation,
   });
 
   @override
@@ -49,7 +53,7 @@ class _MainInputFieldState extends State<MainInputField> {
           widget.label,
           style: TextStyles.font14BlackRegular,
         ),
-        verticalSpace(20.h),
+        verticalSpace(20),
         TextFormField(
           autovalidateMode: AutovalidateMode.onUserInteraction,
           controller: widget.controller,
@@ -72,6 +76,11 @@ class _MainInputFieldState extends State<MainInputField> {
                 color: ColorsManager.secondaryDarkGrey,
               ),
               onPressed: _togglePasswordVisibility,
+            )
+                : widget.isSearch
+                ? const Icon(
+              Iconsax.search_normal,
+              color: ColorsManager.secondaryDarkGrey,
             )
                 : null,
           ),

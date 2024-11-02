@@ -20,7 +20,7 @@ class TitleWithHint extends StatelessWidget {
             style: TextStyles.font25BlackBold,
           ),
         ),
-        verticalSpace(20.h),
+        verticalSpace(20),
         Text(
           'Login to get the full features of the app',
           style: TextStyles.font14GrayRegular,

@@ -5,6 +5,7 @@ import 'package:horecasmart_task/core/routing/routes.dart';
 import 'package:horecasmart_task/features/authentication/logic/cubit/auth_cubit.dart';
 import 'package:horecasmart_task/features/authentication/login/ui/login_screen.dart';
 import 'package:horecasmart_task/features/authentication/sign_up/ui/sign_up_screen.dart';
+import 'package:horecasmart_task/features/home/ui/home_screen.dart';
 import 'package:horecasmart_task/features/onboarding/onboarding_screen.dart';
 
 class AppRouter {
@@ -27,8 +28,8 @@ class AppRouter {
               create: (context) => getIt<AuthCubit>(),
               child:const SignUpScreen(),
             ));
-    // case Routes.homeScreen:
-    //   return MaterialPageRoute(builder: (_) => HomeScreen());
+    case Routes.homeScreen:
+      return MaterialPageRoute(builder: (_) => const HomeScreen());
       default:
         return MaterialPageRoute(builder: (_) =>
             Scaffold(

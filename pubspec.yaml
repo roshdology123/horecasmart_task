@@ -52,6 +52,7 @@ dependencies:
   cached_network_image: ^3.4.1
   flutter_secure_storage: ^9.2.2
   shimmer: ^3.0.0
+  iconsax: ^0.0.8
 dev_dependencies:
   flutter_test:
     sdk: flutter

@@ -41,7 +41,7 @@ class InputFieldsWithButton extends StatelessWidget {
             return null;
           },
         ),
-        verticalSpace(30.h),
+        verticalSpace(30),
         MainInputField(
           label: 'Password',
           hint: 'Enter a secure password',
@@ -57,7 +57,7 @@ class InputFieldsWithButton extends StatelessWidget {
             return null;
           },
         ),
-        verticalSpace(70.h),
+        verticalSpace(70),
         MainButton(
           label: 'Sign In',
           isEnabled: isButtonEnabled,
@@ -69,7 +69,7 @@ class InputFieldsWithButton extends StatelessWidget {
 
           },
         ),
-        verticalSpace(60.h),
+        verticalSpace(60),
         Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [

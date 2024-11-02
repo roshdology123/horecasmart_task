@@ -27,7 +27,7 @@ class RegisterFields extends StatelessWidget {
   Widget build(BuildContext context) {
     return Column(
       children: [
-        verticalSpace(50.h),
+        verticalSpace(50),
         MainInputField(label: 'Email', hint: 'johndoe@gmail.com', controller: emailController,
           validator: (value) {
             if (value!.isEmpty) {
@@ -38,7 +38,7 @@ class RegisterFields extends StatelessWidget {
             }
             return null;
           },),
-        verticalSpace(20.h),
+        verticalSpace(20),
         MainInputField(label: 'Password', hint: '********', controller: passwordController, isPassword: true,
           validator: (value){
             if (value!.isEmpty) {
@@ -49,7 +49,7 @@ class RegisterFields extends StatelessWidget {
             }
             return null;
           },),
-        verticalSpace(20.h),
+        verticalSpace(20),
         MainInputField(label: 'Confirm Password', hint: '********', controller: confirmPasswordController, isPassword: true,
           validator: (value){
             if (value!.isEmpty) {
@@ -60,7 +60,7 @@ class RegisterFields extends StatelessWidget {
             }
             return null;
           },),
-        verticalSpace(30.h),
+        verticalSpace(30),
         MainButton(label: 'Sign Up', isEnabled: isButtonEnabled, onPressed: isButtonEnabled ? () async {
           if (_formKey.currentState!.validate()) {
             await context.read<AuthCubit>().signUp(emailController.text.trim().toLowerCase(), passwordController.text.trim());

@@ -149,7 +149,7 @@ class TextStyles {
   static TextStyle font18DarkBlueSemiBold = TextStyle(
     fontSize: 18.sp,
     fontWeight: FontWeightHelper.semiBold,
-    color: ColorsManager.primaryNavyBlackColor,
+    color: ColorsManager.primaryBlueOceanColor,
     fontFamily: 'DM Sans',
 
   );
