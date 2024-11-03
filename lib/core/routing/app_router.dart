@@ -8,6 +8,8 @@ import 'package:horecasmart_task/features/authentication/sign_up/ui/sign_up_scre
 import 'package:horecasmart_task/features/home/data/logic/cubit/home_cubit.dart';
 import 'package:horecasmart_task/features/home/ui/home_screen.dart';
 import 'package:horecasmart_task/features/onboarding/onboarding_screen.dart';
+import 'package:horecasmart_task/features/product/data/models/product.dart';
+import 'package:horecasmart_task/features/product/ui/product_screen.dart';
 
 class AppRouter {
 
@@ -35,13 +37,25 @@ class AppRouter {
               create: (context) => getIt<HomeCubit>()..getProducts(),
               child: const HomeScreen(),
             ));
+      case Routes.productDetail:
+        if (arguments is Product) {
+          final product = arguments;
+          return MaterialPageRoute(
+            builder: (_) => ProductScreen(product: product),
+          );
+        }return _errorRoute();
       default:
-        return MaterialPageRoute(builder: (_) =>
-            Scaffold(
-              body: Center(
-                child: Text('No route defined for ${settings.name}'),
-              ),
-            ));
+        return _errorRoute();
     }
+
+  }
+  Route _errorRoute() {
+    return MaterialPageRoute(
+      builder: (_) => Scaffold(
+        body: Center(
+          child: Text('No route defined for requested route'),
+        ),
+      ),
+    );
   }
 }

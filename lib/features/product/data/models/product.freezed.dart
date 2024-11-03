@@ -3,7 +3,7 @@
 // ignore_for_file: type=lint
 // ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides, invalid_annotation_target, unnecessary_question_mark
 
-part of 'product.dart';
+part of '../../../product/data/models/product.dart';
 
 // **************************************************************************
 // FreezedGenerator
@@ -22,10 +22,15 @@ Product _$ProductFromJson(Map<String, dynamic> json) {
 mixin _$Product {
   String get imageUrl => throw _privateConstructorUsedError;
   String get name => throw _privateConstructorUsedError;
+  String get description => throw _privateConstructorUsedError;
+  String get category => throw _privateConstructorUsedError;
   double get price => throw _privateConstructorUsedError;
   double get rating => throw _privateConstructorUsedError;
   int get reviews => throw _privateConstructorUsedError;
   int get stock => throw _privateConstructorUsedError;
+  String get productId => throw _privateConstructorUsedError;
+  @TimestampConverter()
+  DateTime get createdAt => throw _privateConstructorUsedError;
 
   /// Serializes this Product to a JSON map.
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
@@ -44,10 +49,14 @@ abstract class $ProductCopyWith<$Res> {
   $Res call(
       {String imageUrl,
       String name,
+      String description,
+      String category,
       double price,
       double rating,
       int reviews,
-      int stock});
+      int stock,
+      String productId,
+      @TimestampConverter() DateTime createdAt});
 }
 
 /// @nodoc
@@ -67,10 +76,14 @@ class _$ProductCopyWithImpl<$Res, $Val extends Product>
   $Res call({
     Object? imageUrl = null,
     Object? name = null,
+    Object? description = null,
+    Object? category = null,
     Object? price = null,
     Object? rating = null,
     Object? reviews = null,
     Object? stock = null,
+    Object? productId = null,
+    Object? createdAt = null,
   }) {
     return _then(_value.copyWith(
       imageUrl: null == imageUrl
@@ -80,6 +93,14 @@ class _$ProductCopyWithImpl<$Res, $Val extends Product>
       name: null == name
           ? _value.name
           : name // ignore: cast_nullable_to_non_nullable
+              as String,
+      description: null == description
+          ? _value.description
+          : description // ignore: cast_nullable_to_non_nullable
+              as String,
+      category: null == category
+          ? _value.category
+          : category // ignore: cast_nullable_to_non_nullable
               as String,
       price: null == price
           ? _value.price
@@ -97,6 +118,14 @@ class _$ProductCopyWithImpl<$Res, $Val extends Product>
           ? _value.stock
           : stock // ignore: cast_nullable_to_non_nullable
               as int,
+      productId: null == productId
+          ? _value.productId
+          : productId // ignore: cast_nullable_to_non_nullable
+              as String,
+      createdAt: null == createdAt
+          ? _value.createdAt
+          : createdAt // ignore: cast_nullable_to_non_nullable
+              as DateTime,
     ) as $Val);
   }
 }
@@ -111,10 +140,14 @@ abstract class _$$ProductImplCopyWith<$Res> implements $ProductCopyWith<$Res> {
   $Res call(
       {String imageUrl,
       String name,
+      String description,
+      String category,
       double price,
       double rating,
       int reviews,
-      int stock});
+      int stock,
+      String productId,
+      @TimestampConverter() DateTime createdAt});
 }
 
 /// @nodoc
@@ -132,10 +165,14 @@ class __$$ProductImplCopyWithImpl<$Res>
   $Res call({
     Object? imageUrl = null,
     Object? name = null,
+    Object? description = null,
+    Object? category = null,
     Object? price = null,
     Object? rating = null,
     Object? reviews = null,
     Object? stock = null,
+    Object? productId = null,
+    Object? createdAt = null,
   }) {
     return _then(_$ProductImpl(
       imageUrl: null == imageUrl
@@ -145,6 +182,14 @@ class __$$ProductImplCopyWithImpl<$Res>
       name: null == name
           ? _value.name
           : name // ignore: cast_nullable_to_non_nullable
+              as String,
+      description: null == description
+          ? _value.description
+          : description // ignore: cast_nullable_to_non_nullable
+              as String,
+      category: null == category
+          ? _value.category
+          : category // ignore: cast_nullable_to_non_nullable
               as String,
       price: null == price
           ? _value.price
@@ -162,6 +207,14 @@ class __$$ProductImplCopyWithImpl<$Res>
           ? _value.stock
           : stock // ignore: cast_nullable_to_non_nullable
               as int,
+      productId: null == productId
+          ? _value.productId
+          : productId // ignore: cast_nullable_to_non_nullable
+              as String,
+      createdAt: null == createdAt
+          ? _value.createdAt
+          : createdAt // ignore: cast_nullable_to_non_nullable
+              as DateTime,
     ));
   }
 }
@@ -172,10 +225,14 @@ class _$ProductImpl implements _Product {
   _$ProductImpl(
       {required this.imageUrl,
       required this.name,
+      required this.description,
+      required this.category,
       required this.price,
       required this.rating,
       required this.reviews,
-      required this.stock});
+      required this.stock,
+      required this.productId,
+      @TimestampConverter() required this.createdAt});
 
   factory _$ProductImpl.fromJson(Map<String, dynamic> json) =>
       _$$ProductImplFromJson(json);
@@ -185,6 +242,10 @@ class _$ProductImpl implements _Product {
   @override
   final String name;
   @override
+  final String description;
+  @override
+  final String category;
+  @override
   final double price;
   @override
   final double rating;
@@ -192,10 +253,15 @@ class _$ProductImpl implements _Product {
   final int reviews;
   @override
   final int stock;
+  @override
+  final String productId;
+  @override
+  @TimestampConverter()
+  final DateTime createdAt;
 
   @override
   String toString() {
-    return 'Product(imageUrl: $imageUrl, name: $name, price: $price, rating: $rating, reviews: $reviews, stock: $stock)';
+    return 'Product(imageUrl: $imageUrl, name: $name, description: $description, category: $category, price: $price, rating: $rating, reviews: $reviews, stock: $stock, productId: $productId, createdAt: $createdAt)';
   }
 
   @override
@@ -206,16 +272,24 @@ class _$ProductImpl implements _Product {
             (identical(other.imageUrl, imageUrl) ||
                 other.imageUrl == imageUrl) &&
             (identical(other.name, name) || other.name == name) &&
+            (identical(other.description, description) ||
+                other.description == description) &&
+            (identical(other.category, category) ||
+                other.category == category) &&
             (identical(other.price, price) || other.price == price) &&
             (identical(other.rating, rating) || other.rating == rating) &&
             (identical(other.reviews, reviews) || other.reviews == reviews) &&
-            (identical(other.stock, stock) || other.stock == stock));
+            (identical(other.stock, stock) || other.stock == stock) &&
+            (identical(other.productId, productId) ||
+                other.productId == productId) &&
+            (identical(other.createdAt, createdAt) ||
+                other.createdAt == createdAt));
   }
 
   @JsonKey(includeFromJson: false, includeToJson: false)
   @override
-  int get hashCode =>
-      Object.hash(runtimeType, imageUrl, name, price, rating, reviews, stock);
+  int get hashCode => Object.hash(runtimeType, imageUrl, name, description,
+      category, price, rating, reviews, stock, productId, createdAt);
 
   /// Create a copy of Product
   /// with the given fields replaced by the non-null parameter values.
@@ -237,10 +311,14 @@ abstract class _Product implements Product {
   factory _Product(
       {required final String imageUrl,
       required final String name,
+      required final String description,
+      required final String category,
       required final double price,
       required final double rating,
       required final int reviews,
-      required final int stock}) = _$ProductImpl;
+      required final int stock,
+      required final String productId,
+      @TimestampConverter() required final DateTime createdAt}) = _$ProductImpl;
 
   factory _Product.fromJson(Map<String, dynamic> json) = _$ProductImpl.fromJson;
 
@@ -249,6 +327,10 @@ abstract class _Product implements Product {
   @override
   String get name;
   @override
+  String get description;
+  @override
+  String get category;
+  @override
   double get price;
   @override
   double get rating;
@@ -256,6 +338,11 @@ abstract class _Product implements Product {
   int get reviews;
   @override
   int get stock;
+  @override
+  String get productId;
+  @override
+  @TimestampConverter()
+  DateTime get createdAt;
 
   /// Create a copy of Product
   /// with the given fields replaced by the non-null parameter values.

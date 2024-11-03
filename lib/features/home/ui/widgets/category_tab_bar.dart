@@ -6,8 +6,10 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class CategoryTabView extends StatelessWidget {
   final List<CategoryItem> categories;
+  final Function(CategoryItem) onCategorySelected;
 
-  const CategoryTabView({super.key, required this.categories});
+
+  const CategoryTabView({super.key, required this.categories,required this.onCategorySelected});
 
   @override
   Widget build(BuildContext context) {
@@ -35,11 +37,14 @@ class CategoryTabView extends StatelessWidget {
             children: categories.map((item) {
               return Padding(
                 padding: EdgeInsets.only(right: 32.w),
-                child: CategoryIconTile(
-                  icon: item.icon,
-                  label: item.label,
-                  backgroundColor: item.backgroundColor,
-                  iconColor: item.iconColor,
+                child: InkWell(
+                  onTap: () => onCategorySelected(item),
+                  child: CategoryIconTile(
+                    icon: item.icon,
+                    label: item.label,
+                    backgroundColor: item.backgroundColor,
+                    iconColor: item.iconColor,
+                  ),
                 ),
               );
             }).toList(),
