@@ -12,7 +12,6 @@ class CartScreen extends StatefulWidget {
   @override
   State<CartScreen> createState() => _CartScreenState();
 }
-bool isEmptyCart = true;
 class _CartScreenState extends State<CartScreen> {
   @override
   Widget build(BuildContext context) {
@@ -34,7 +33,6 @@ class _CartScreenState extends State<CartScreen> {
                 : ListView.builder(
               itemCount: cartItems.length,
               itemBuilder: (context, index) {
-                isEmptyCart = cartItems.isEmpty;
                 final cartItem = cartItems[index];
                 return ListTile(
                   leading: CachedNetworkImage(
@@ -80,15 +78,25 @@ class _CartScreenState extends State<CartScreen> {
           );
         },
       ),
-      bottomNavigationBar: Padding(
-        padding: const EdgeInsets.all(16.0),
-        child: MainButton(
-          onPressed: () {
-            context.read<CartCubit>().checkout();
-          },
-          label: 'Checkout',
-          isEnabled: isEmptyCart ? false : true,
-        ),
+      bottomNavigationBar: BlocBuilder<CartCubit, CartState>(
+        builder: (context, state) {
+          final isCartEmpty = state.maybeWhen(
+            loaded: (cartItems) => cartItems.isEmpty,
+            orElse: () => true,
+          );
+          return Padding(
+            padding: const EdgeInsets.all(16.0),
+            child: MainButton(
+              onPressed: isCartEmpty
+                  ? (){}
+                  : () {
+                context.read<CartCubit>().checkout();
+              },
+              label: 'Checkout',
+              isEnabled: !isCartEmpty,
+            ),
+          );
+        },
       ),
     );
   }
