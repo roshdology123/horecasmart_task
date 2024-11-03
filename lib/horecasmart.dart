@@ -17,7 +17,7 @@ class HorecasmartApp extends StatelessWidget {
         debugShowCheckedModeBanner: false,
         title: 'Horecasmart',
         onGenerateRoute: appRouter.generateRoute,
-        initialRoute: Routes.loginScreen,
+        initialRoute: Routes.homeScreen,
         theme: ThemeData(
           primaryColor: ColorsManager.primaryBlueOceanColor,
           scaffoldBackgroundColor: ColorsManager.pureWhite,

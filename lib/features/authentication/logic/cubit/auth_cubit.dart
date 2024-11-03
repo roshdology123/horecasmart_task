@@ -1,3 +1,4 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:horecasmart_task/core/di/dependency_injection.dart';
@@ -9,6 +10,7 @@ import 'auth_state.dart';
 
 class AuthCubit extends Cubit<AuthState> {
   final FirebaseAuth _auth = getIt<FirebaseAuth>();
+  final FirebaseFirestore _firebaseFirestore = getIt<FirebaseFirestore>();
   AuthCubit() : super(const AuthState.initial());
 
   Future<void> login(String email, String password) async {
@@ -94,6 +96,7 @@ class AuthCubit extends Cubit<AuthState> {
           profilePictureUrl: user.photoURL,
           phoneNumber: user.phoneNumber,
         );
+        await _firebaseFirestore.collection('users').doc(user.uid).set(newUser.toJson());
         emit(AuthState.authenticated(newUser));
       } else {
         emit(const AuthState.error('An error occurred. Please try again.'));
@@ -120,4 +123,5 @@ class AuthCubit extends Cubit<AuthState> {
       emit(AuthState.error(errorMessage));
     }
   }
+
 }

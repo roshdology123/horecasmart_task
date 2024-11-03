@@ -149,7 +149,7 @@ class TextStyles {
   static TextStyle font18DarkBlueSemiBold = TextStyle(
     fontSize: 18.sp,
     fontWeight: FontWeightHelper.semiBold,
-    color: ColorsManager.primaryNavyBlackColor,
+    color: ColorsManager.primaryBlueOceanColor,
     fontFamily: 'DM Sans',
 
   );
@@ -171,6 +171,34 @@ class TextStyles {
   static TextStyle font14BlackRegular = TextStyle(
     fontSize: 14.sp,
     fontWeight: FontWeightHelper.regular,
+    color: ColorsManager.blackTextColor,
+    fontFamily: 'DM Sans'
+  );
+
+  static TextStyle font16BlackRegular = TextStyle(
+    fontSize: 16.sp,
+    fontWeight: FontWeightHelper.regular,
+    color: ColorsManager.blackTextColor,
+    fontFamily: 'DM Sans'
+  );
+
+  static TextStyle font16BlackMedium = TextStyle(
+    fontSize: 16.sp,
+    fontWeight: FontWeightHelper.medium,
+    color: ColorsManager.blackTextColor,
+    fontFamily: 'DM Sans'
+  );
+
+  static TextStyle font16BlackSemiBold = TextStyle(
+    fontSize: 16.sp,
+    fontWeight: FontWeightHelper.semiBold,
+    color: ColorsManager.blackTextColor,
+    fontFamily: 'DM Sans'
+  );
+
+  static TextStyle font16BlackBold = TextStyle(
+    fontSize: 16.sp,
+    fontWeight: FontWeightHelper.bold,
     color: ColorsManager.blackTextColor,
     fontFamily: 'DM Sans'
   );

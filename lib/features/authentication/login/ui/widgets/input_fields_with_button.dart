@@ -7,7 +7,6 @@ import 'package:horecasmart_task/core/theming/styles.dart';
 import 'package:horecasmart_task/core/widgets/main_button.dart';
 import 'package:horecasmart_task/core/widgets/main_input_field.dart';
 import 'package:horecasmart_task/features/authentication/logic/cubit/auth_cubit.dart';
-import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class InputFieldsWithButton extends StatelessWidget {
   const InputFieldsWithButton({
@@ -41,7 +40,7 @@ class InputFieldsWithButton extends StatelessWidget {
             return null;
           },
         ),
-        verticalSpace(30.h),
+        verticalSpace(30),
         MainInputField(
           label: 'Password',
           hint: 'Enter a secure password',
@@ -57,7 +56,7 @@ class InputFieldsWithButton extends StatelessWidget {
             return null;
           },
         ),
-        verticalSpace(70.h),
+        verticalSpace(70),
         MainButton(
           label: 'Sign In',
           isEnabled: isButtonEnabled,
@@ -69,7 +68,7 @@ class InputFieldsWithButton extends StatelessWidget {
 
           },
         ),
-        verticalSpace(60.h),
+        verticalSpace(60),
         Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [

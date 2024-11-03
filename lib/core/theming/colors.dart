@@ -16,4 +16,6 @@ class ColorsManager {
   static const Color labelOffRed = Color(0xffFCECEF);
   static const Color blackTextColor = Color(0xff0C1A30);
 
+  static const Color promoCardGradientStart = Color(0xFF0ACF83);
+
 }

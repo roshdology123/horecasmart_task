@@ -72,13 +72,13 @@ class _SignUpScreenState extends State<SignUpScreen> {
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                verticalSpace(30.h),
+                verticalSpace(30),
                 Text('Register Account', style: TextStyles.font25BlackBold,),
-                verticalSpace(20.h),
+                verticalSpace(20),
                 Text('Complete your details', style: TextStyles.font14GrayRegular,),
 
                 RegisterFields(emailController: emailController, passwordController: passwordController, confirmPasswordController: confirmPasswordController, isButtonEnabled: isButtonEnabled, formKey: _formKey),
-                verticalSpace(70.h),
+                verticalSpace(70),
                 Row(
                   mainAxisAlignment: MainAxisAlignment.center,
                   crossAxisAlignment: CrossAxisAlignment.center,
