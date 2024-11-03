@@ -57,7 +57,7 @@ class _HomeScreenState extends State<HomeScreen> {
           IconButton(
             icon: const Icon(Iconsax.shopping_cart),
             onPressed: () {
-              context.read<AuthCubit>().signOut();
+              context.pushNamed(Routes.cartScreen);
             },
           ),
         ],

@@ -10,8 +10,8 @@ import 'auth_state.dart';
 
 class AuthCubit extends Cubit<AuthState> {
   final FirebaseAuth _auth = getIt<FirebaseAuth>();
-  final FirebaseFirestore _firebaseFirestore = getIt<FirebaseFirestore>();
-  AuthCubit() : super(const AuthState.initial());
+  final FirebaseFirestore _firebaseFirestore;
+  AuthCubit(this._firebaseFirestore) : super(const AuthState.initial());
 
   Future<void> login(String email, String password) async {
     try {
