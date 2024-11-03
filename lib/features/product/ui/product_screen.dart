@@ -1,9 +1,15 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:horecasmart_task/core/di/dependency_injection.dart';
+import 'package:horecasmart_task/core/helpers/app_regex.dart';
 import 'package:horecasmart_task/core/helpers/spacing.dart';
+import 'package:horecasmart_task/core/routing/routes.dart';
 import 'package:horecasmart_task/core/theming/colors.dart';
 import 'package:horecasmart_task/core/theming/styles.dart';
 import 'package:horecasmart_task/core/widgets/main_button.dart';
+import 'package:horecasmart_task/features/cart/data/logic/cubit/cart_cubit.dart';
+import 'package:horecasmart_task/features/cart/data/models/cart_item_model.dart';
 import 'package:horecasmart_task/features/product/data/models/product.dart';
 import 'package:iconsax/iconsax.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -30,6 +36,7 @@ class ProductScreen extends StatelessWidget {
           IconButton(
             icon: const Icon(Iconsax.shopping_cart),
             onPressed: () {
+              context.pushNamed(Routes.cartScreen);
             },
           ),
         ],
@@ -131,6 +138,8 @@ void _showAddToCartPopup(BuildContext context, Product product) {
   double sizeMultiplier = 1.0;
   String selectedSize = 'Small';
   double totalPrice = basePrice * sizeMultiplier * quantity;
+  CartCubit cartCubit = getIt<CartCubit>();
+
 
   showModalBottomSheet(
     context: context,
@@ -237,7 +246,7 @@ void _showAddToCartPopup(BuildContext context, Product product) {
                 verticalSpace(20),
                 MainButton(
                   onPressed: () {
-                    // Add product to cart logic can go here
+                    cartCubit.addCartItem(CartItemModel(product: product, quantity: quantity, totalPrice: totalPrice));
                     Navigator.pop(context);
                   },
                   label: 'Add to Cart',
