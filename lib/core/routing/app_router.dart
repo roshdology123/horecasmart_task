@@ -5,7 +5,6 @@ import 'package:horecasmart_task/core/routing/routes.dart';
 import 'package:horecasmart_task/features/authentication/logic/cubit/auth_cubit.dart';
 import 'package:horecasmart_task/features/authentication/login/ui/login_screen.dart';
 import 'package:horecasmart_task/features/authentication/sign_up/ui/sign_up_screen.dart';
-import 'package:horecasmart_task/features/cart/data/logic/cubit/cart_cubit.dart';
 import 'package:horecasmart_task/features/cart/ui/cart_screen.dart';
 import 'package:horecasmart_task/features/home/data/logic/cubit/home_cubit.dart';
 import 'package:horecasmart_task/features/home/ui/home_screen.dart';
@@ -58,7 +57,7 @@ class AppRouter {
 
   Route _errorRoute() {
     return MaterialPageRoute(
-      builder: (_) => Scaffold(
+      builder: (_) => const Scaffold(
         body: Center(
           child: Text('No route defined for requested route'),
         ),

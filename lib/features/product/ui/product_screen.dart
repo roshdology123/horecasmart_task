@@ -1,6 +1,5 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:horecasmart_task/core/di/dependency_injection.dart';
 import 'package:horecasmart_task/core/helpers/app_regex.dart';
 import 'package:horecasmart_task/core/helpers/spacing.dart';
@@ -144,7 +143,7 @@ void _showAddToCartPopup(BuildContext context, Product product) {
   showModalBottomSheet(
     context: context,
     isScrollControlled: true,
-    shape: RoundedRectangleBorder(
+    shape: const RoundedRectangleBorder(
       borderRadius: BorderRadius.vertical(top: Radius.circular(20)),
     ),
     builder: (context) {
@@ -161,9 +160,9 @@ void _showAddToCartPopup(BuildContext context, Product product) {
                       'Add to Cart',
                       style: TextStyles.font16BlackBold,
                     ),
-                    Spacer(),
+                    const Spacer(),
                     IconButton(
-                      icon: Icon(Icons.close),
+                      icon: const Icon(Icons.close),
                       onPressed: () {
                         Navigator.pop(context);
                       },
@@ -178,7 +177,7 @@ void _showAddToCartPopup(BuildContext context, Product product) {
                     Row(
                       children: [
                         IconButton(
-                          icon: Icon(Icons.remove),
+                          icon: const Icon(Icons.remove),
                           onPressed: () {
                             setState(() {
                               if (quantity > 1) quantity--;
@@ -188,7 +187,7 @@ void _showAddToCartPopup(BuildContext context, Product product) {
                         ),
                         Text('$quantity', style: TextStyles.font16BlackRegular,),
                         IconButton(
-                          icon: Icon(Icons.add),
+                          icon: const Icon(Icons.add),
                           onPressed: () {
                             setState(() {
                               quantity++;

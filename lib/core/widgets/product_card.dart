@@ -4,7 +4,6 @@ import 'package:cached_network_image/cached_network_image.dart';
 import 'package:horecasmart_task/core/helpers/spacing.dart';
 import 'package:horecasmart_task/core/theming/colors.dart';
 import 'package:horecasmart_task/core/theming/styles.dart';
-import 'package:horecasmart_task/core/widgets/product_loading_shimmer.dart';
 import 'package:shimmer/shimmer.dart';
 
 class ProductCard extends StatelessWidget {
